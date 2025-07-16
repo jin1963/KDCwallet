@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Tokens to Bitget/MetaMask</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f9e6;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      color: #006400;
+    }
+    .token-button {
+      margin: 10px;
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .token-button:hover {
+      background-color: #1e7e34;
+    }
+  </style>
+</head>
+<body>
+  <h1>เพิ่ม Token ไปยัง Bitget Wallet</h1>
+
+  <button class="token-button" onclick="addToken('KJC', '0xd479ae350dc24168e8db863c5413c35fb2044ecd', '18', 'https://jin1963.github.io/KDCwallet/kjc.png')">
+    ➕ เพิ่ม KJC
+  </button>
+
+  <button class="token-button" onclick="addToken('G3X24', '0x6cfD8Fe423F20F94825b5edB1E94068fBea19dC9', '18', 'https://jin1963.github.io/KDCwallet/g3x24.png')">
+    ➕ เพิ่ม G3X24
+  </button>
+
+  <button class="token-button" onclick="addToken('LYDIA', '0x0fa662697d93Eb024f411E416f681EA7FECFcF96', '18', 'https://jin1963.github.io/KDCwallet/lydia.png')">
+    ➕ เพิ่ม LYDIA
+  </button>
+
+  <script>
+    async function addToken(symbol, address, decimals, image) {
+      if (window.ethereum) {
+        try {
+          const wasAdded = await ethereum.request({
+            method: 'wallet_watchAsset',
+            params: {
+              type: 'ERC20',
+              options: {
+                address: address,
+                symbol: symbol,
+                decimals: Number(decimals),
+                image: image,
+              },
+            },
+          });
+
+          if (wasAdded) {
+            alert(symbol + ' added to wallet!');
+          } else {
+            alert('User rejected request.');
+          }
+        } catch (error) {
+          console.error(error);
+          alert('Error adding token.');
+        }
+      } else {
+        alert('Wallet not detected. Use Bitget or MetaMask.');
+      }
+    }
+  </script>
+</body>
+</html>
