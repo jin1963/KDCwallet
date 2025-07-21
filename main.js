@@ -30,7 +30,7 @@ const tokens = {
     elementId: "kjcBalance"
   },
   g3x24: {
-    address: "0x6cfD8Fe423F20F94825b5edB1E94068fBea19dC9",
+    address: "0xCcf14757654ddeF0eC30ab117C4Cf3aEbF3b5604",
     decimals: 18,
     elementId: "g3x24Balance"
   },
